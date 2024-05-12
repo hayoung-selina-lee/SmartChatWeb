@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: backend
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:asdasd123@cluster0.ge1jjxo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: smartchat
+      username: admin
+      password: asdasd123
