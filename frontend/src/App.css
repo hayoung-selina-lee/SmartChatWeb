@@ -1,5 +1,17 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #d4e6f1;
+  --dark-color: #003366;
+  --background-color: #f8fafd;
+}
+
 * {
-  background-color: #f8fafd;
+  background-color: var(--background-color);
 }
 
 .App {
@@ -35,8 +47,8 @@
 }
 
 .App-title {
-  margin-left: 0.9vw;
-  color: #003366;
+  margin-left: 10px;
+  color: var(--dark-color);
 }
 
 .Background {
@@ -62,11 +74,32 @@
   margin-top: 2vh;
 }
 
-.Signin-component-title {
+.input-label {
+  font-size: calc(2vmin);
+  font-weight: bold;
+  text-align: left;
+  margin-top: 3vh;
+}
+
+.warning-label {
   font-size: calc(2.5vmin);
   font-weight: bold;
   text-align: left;
-  margin-top: 1.5vh;
+  color: var(--danger-color);
+}
+
+.warning-inputWrap {
+  display: flex;
+  height: 1vh;
+  border-radius: 8px;
+  padding: 3vh;
+  margin-top: 3px;
+  border: 1px solid var(--danger-color);
+  font-size: calc(2.3vmin);
+}
+
+.warning-inputWrap:focus-within {
+  border: 1px solid #a2d5f2;
 }
 
 .Signup-link {
@@ -76,28 +109,114 @@
   text-decoration: none;
 }
 
+.Signup-body {
+  width: 50vmin;
+  height: 40vmin;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+}
+
 .inputWrap {
   display: flex;
+  height: 1vh;
   border-radius: 8px;
   padding: 3vh;
-  margin-top: 1.5vh;
-  border: 1px solid #d4e6f1;
+  margin-top: 3px;
+  border: 1px solid var(--light-color);
+  font-size: calc(2.3vmin);
 }
 
 .inputWrap:focus-within {
   border: 1px solid #a2d5f2;
 }
 
-.check-button {
-  border: 1px;
-  padding: 3vh;
-  border-radius: 64px;
-  background-color: #d4e6f1;
-  cursor: pointer;
-  margin-top: 2vh;
+.input-button-wrapper {
+  display: flex;
+  align-items: center;
 }
 
-.check-button:focus {
-  background-color: #003366;
-  color: white;
+.input-button-wrapper input {
+  flex: 1;
+  margin-right: 3px;
+}
+
+/* custom-button */
+.custom-button {
+  padding: 0.1em 0.25em;
+  margin-top: 3vh;
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 8px;
+  font-size: calc(2.3vmin);
+  cursor: pointer;
+}
+
+.custom-button span {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0.4em;
+  padding: 2vh;
+  background-color: var(--light-color);
+  border-radius: 8px;
+
+  border: 1px solid #fff;
+  box-shadow: 0 0.4em 0.1em 0.019em #fff;
+  color: black;
+  font-weight: bold;
+}
+
+.custom-button span:hover {
+  transition: all 0.5s;
+  transform: translate(0, 0.4em);
+  box-shadow: 0 0 0 0 #fff;
+}
+
+.custom-button span:not(:hover):not(:active) {
+  transition: all 1s;
+}
+
+/* custom-radio */
+.radio-inputs {
+  margin-top: 3px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--light-color);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 0.5vh;
+  font-size: 14px;
+  height: 50vh;
+}
+
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  font-size: calc(2.3vmin);
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 1.5vh;
+  transition: all 0.15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: var(--light-color);
+  font-weight: 600;
+}
+
+.warning-radio-inputs {
+  border-color: var(--danger-color);
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "../component/Header";
 import "../App.css";
 import Results from "../resources/Utils";
-import signup from "./SignUp";
 import { Link } from "react-router-dom";
 
 function SignIn() {
@@ -42,29 +41,26 @@ function SignIn() {
       body: JSON.stringify(inputs),
     })
       .then((response) => {
-        console.log("Success:", response);
-        return response.json();
+        if (response.ok) {
+          console.log("Login successful");
+          setSigninCheck(false);
+          return response.json();
+        } else if (response.status === 401) {
+          console.log("Invalid username or password");
+          setSigninCheck(true);
+        }
       })
       .then((data) => {
         console.log("Success:", data);
 
-        const status = data.status;
+        console.log("Login successful");
+        setSigninCheck(false);
 
-        if (status === Results.SUCCESS) {
-          console.log("Login successful");
-          setSigninCheck(false);
-
-          // Store token in local storage
-          /*
+        // Store token in local storage
+        /*
           sessionStorage.setItem("token", data.token);
           sessionStorage.setItem("email", data.email);
           */
-        } else if (status === Results.FAIL) {
-          console.log("Login failed");
-          setSigninCheck(true);
-        } else {
-          console.log("Unknown status:", status);
-        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -79,16 +75,16 @@ function SignIn() {
       <div className="Description-title">Welcome</div>
 
       <form className="Signin-body">
-        <label className="Signin-component-title">Email</label>
+        <label className="input-label">Email</label>
         <input id="email" className="inputWrap" type="email" value={email} onChange={onChange} />
 
-        <label className="Signin-component-title">Password</label>
+        <label className="input-label">Password</label>
         <input id="password" className="inputWrap" type="password" value={password} onChange={onChange} />
         <br />
 
         {signinCheck && <label style={{ color: "red" }}>Please try again</label>}
-        <button type="button" className="check-button" onClick={onClickLogin}>
-          Login
+        <button className="custom-button" onClick={onClickLogin}>
+          <span> Login </span>
         </button>
       </form>
 
@@ -96,7 +92,7 @@ function SignIn() {
         <label>Forgot your password?</label>
         <br />
         <label>Don't have an account ?</label>
-        <Link className="Signup-link" to="signup">
+        <Link className="Signup-link" to="/signup">
           Sign Up
         </Link>
       </p>
