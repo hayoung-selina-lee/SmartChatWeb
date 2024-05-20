@@ -33,6 +33,8 @@ public class SignUpService {
     public ResponseEntity<String> registerUser(UserEntity user) {
         user.setScore(0); // set init score point
 
+        userRepository.save(user); // save to db
+
         return ResponseEntity.ok("Success to create");
     }
 }
