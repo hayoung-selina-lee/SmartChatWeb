@@ -4,7 +4,7 @@
   --success-color: #28a745;
   --danger-color: #dc3545;
   --warning-color: #ffc107;
-  --info-color: #17a2b8;
+  --info-color: #a2d5f2;
   --light-color: #d4e6f1;
   --dark-color: #003366;
   --background-color: #f8fafd;
@@ -152,6 +152,16 @@
   cursor: pointer;
 }
 
+.custom-button[disabled] {
+  cursor: not-allowed;
+}
+
+.custom-button[disabled] span {
+  transition: all 0.5s;
+  transform: translate(0, 0.4em);
+  box-shadow: 0 0 0 0 #fff;
+}
+
 .custom-button span {
   position: relative;
   display: flex;
@@ -219,4 +229,23 @@
 
 .warning-radio-inputs {
   border-color: var(--danger-color);
+}
+
+.toast-popup {
+  background-color: var(--info-color);
+  border-radius: 8px;
+  font-size: 20px;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  margin-top: 10px;
+  padding: 1.5vh;
+}
+
+.toast-popup-icon {
+  background-color: var(--info-color);
+  font-size: 30px; /* icon Size */
+  color: var(--background-color);
+  margin-right: 10px;
+  stroke-width: 2; /* icon stroke Size */
 }

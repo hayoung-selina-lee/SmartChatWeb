@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import Header from "../component/Header";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import ToastPopUp from "../component/ToastPopUp";
 
 function SignUp() {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  // for toast message after creating new account
+  const [showToast, setShowToast] = useState(false);
+
   // check for finishing all input check
   const [signUpUncomplete, setsignUpUncomplete] = useState(false);
 
@@ -42,88 +48,104 @@ function SignUp() {
       ...inputs,
       [id]: value,
     });
+
+    if (id !== "email") {
+      checkInputCompleted(id);
+    }
   };
 
   // check wheather every input is filled
-  const checkInputCompleted = () => {
+  const checkInputCompleted = (input) => {
+    console.log("checkInputCompleted " + input);
     let isCompleted = true;
-
-    if (!email) {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        emailCheck: true,
-      }));
-      isCompleted = false;
-    } else {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        emailCheck: false,
-      }));
+    if (!input || input === "email") {
+      if (!email) {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          emailCheck: true,
+        }));
+        isCompleted = false;
+      } else {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          emailCheck: false,
+        }));
+      }
     }
 
-    if (!password) {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        passwordCheck: true,
-      }));
-      isCompleted = false;
-    } else {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        passwordCheck: false,
-      }));
+    if (!input || input === "password") {
+      if (!password) {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          passwordCheck: true,
+        }));
+        isCompleted = false;
+      } else {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          passwordCheck: false,
+        }));
+      }
     }
 
-    if (!confirm) {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        confirmCheck: true,
-      }));
-      isCompleted = false;
-    } else {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        confirmCheck: false,
-      }));
+    if (!input || input === "confirm") {
+      if (!confirm) {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          confirmCheck: true,
+        }));
+        isCompleted = false;
+      } else {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          confirmCheck: false,
+        }));
+      }
     }
 
-    if (!name) {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        nameCheck: true,
-      }));
-      isCompleted = false;
-    } else {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        nameCheck: false,
-      }));
+    if (!input || input === "name") {
+      if (!name) {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          nameCheck: true,
+        }));
+        isCompleted = false;
+      } else {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          nameCheck: false,
+        }));
+      }
     }
 
-    if (!checkGender()) {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        genderCheck: true,
-      }));
-      isCompleted = false;
-    } else {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        genderCheck: false,
-      }));
+    if (!input || input === "gender") {
+      if (!checkGender()) {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          genderCheck: true,
+        }));
+        isCompleted = false;
+      } else {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          genderCheck: false,
+        }));
+      }
     }
 
-    if (!checkDateOfBirth()) {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        birthCheck: true,
-      }));
-      isCompleted = false;
-    } else {
-      setSignUpCheck((prevState) => ({
-        ...prevState,
-        birthCheck: false,
-      }));
+    if (!input || input === "birth") {
+      if (!checkDateOfBirth()) {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          birthCheck: true,
+        }));
+        isCompleted = false;
+      } else {
+        setSignUpCheck((prevState) => ({
+          ...prevState,
+          birthCheck: false,
+        }));
+      }
     }
 
     return isCompleted;
@@ -149,11 +171,19 @@ function SignUp() {
       ...inputs,
       gender: e.target.value,
     });
+
+    checkInputCompleted("gender");
+  };
+
+  // check validate Email
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   // check email when the focus out from email input text
   const handleEmailBlur = async () => {
-    if (email !== "") {
+    if (email !== "" && validateEmail(email)) {
       fetch("/signup/checkmail?email=" + encodeURIComponent(email), {
         method: "POST",
         headers: {
@@ -178,19 +208,28 @@ function SignUp() {
         .catch((error) => {
           console.error("Error checking email:", error);
         });
+    } else {
+      setSignUpCheck((prevState) => ({
+        ...prevState,
+        emailCheck: true,
+      }));
+      setsignUpUncomplete(true);
     }
   };
 
   // check wheather the signup inputs are filled and then send to backend
   const navigate = useNavigate();
+
   const onClickSignUp = (e) => {
     e.preventDefault();
+    setIsButtonDisabled(true);
     console.log("Click Sign up button");
 
     // wheather all inputs is filled
     if (!checkInputCompleted()) {
       console.log("check!");
       setsignUpUncomplete(true);
+      setIsButtonDisabled(false);
       return;
     } else {
       setsignUpUncomplete(false);
@@ -198,7 +237,9 @@ function SignUp() {
 
     // check password and confirm password is same
     if (confirm !== password) {
+      setIsButtonDisabled(false);
       setpasswordSame(true);
+      return;
     } else {
       setpasswordSame(false);
     }
@@ -213,8 +254,8 @@ function SignUp() {
     })
       .then((response) => {
         if (response.ok) {
+          setShowToast(true); // show toast message
           console.log("create!!!");
-          navigate("/SignIn");
         }
       })
       .catch((error) => {
@@ -287,11 +328,23 @@ function SignUp() {
         {signUpUncomplete && <label className="warning-label">Please fill every part</label>}
         {passwordSameCheck && <label className="warning-label">Check Password</label>}
 
-        <button className="custom-button" onClick={onClickSignUp}>
+        <button disabled={isButtonDisabled} className="custom-button" onClick={onClickSignUp}>
           <span> Sign Up </span>
         </button>
         <br style={{ marginBottom: "50vh" }} />
       </form>
+      {showToast && (
+        <ToastPopUp
+          setToast={setShowToast}
+          text={
+            <>
+              Sign up completed. <br />
+              Redirecting to the sign in page.
+            </>
+          }
+          onFinishToast={() => navigate("/signin")}
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,31 @@
+.Toastify__toast {
+  background-color: var(--background-color);
+  color: black;
+  font-weight: bold;
+}
+
+.Toastify__toast-container {
+  width: 400px;
+}
+
+.Toastify__toast {
+  border-radius: 8px;
+}
+
+.Toastify__close-button {
+  color: var(--dark-color);
+}
+
+.Toastify__progress-bar {
+  background: var(--dark-color);
+}
+
+.Toastify__progress-bar--success {
+  background-color: var(--dark-color);
+}
+
+.Toastify__toast-body svg {
+  fill: var(--dark-color);
+  width: 20px;
+  height: 20px;
+}
