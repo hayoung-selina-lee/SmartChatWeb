@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Header from "../component/Header";
+import Header from "../components/Header";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-import ToastPopUp from "../component/ToastPopUp";
+import ToastPopUp from "../components/ToastPopUp";
 
 function SignUp() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -40,9 +40,7 @@ function SignUp() {
 
   // check every input changed
   const onChange = (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-    const id = e.target.id;
+    const { id, value } = e.target;
 
     setInputs({
       ...inputs,
@@ -56,7 +54,6 @@ function SignUp() {
 
   // check wheather every input is filled
   const checkInputCompleted = (input) => {
-    console.log("checkInputCompleted " + input);
     let isCompleted = true;
     if (!input || input === "email") {
       if (!email) {
@@ -264,12 +261,12 @@ function SignUp() {
   };
 
   return (
-    <div className="Background">
+    <div className="background">
       <Header />
 
-      <div className="Description-title">Get Started with Smart Chat</div>
+      <div className="description-title">Get Started with Smart Chat</div>
 
-      <form className="Signup-body">
+      <form className="signup-body">
         <label className="input-label">Email</label>
         <div className="input-button-wrapper">
           <input

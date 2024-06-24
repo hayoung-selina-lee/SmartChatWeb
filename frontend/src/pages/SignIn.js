@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Header from "../component/Header";
+import Header from "../components/Header";
 import "../App.css";
-import Results from "../resources/Utils";
 import { Link } from "react-router-dom";
 
 function SignIn() {
@@ -13,15 +12,12 @@ function SignIn() {
     email: "",
     password: "",
   });
+
   const { email, password } = inputs;
 
   // check change event using email and password input
   const onChange = (e) => {
-    e.preventDefault();
-
-    const value = e.target.value;
-    const id = e.target.id;
-
+    const { id, value } = e.target;
     setInputs({
       ...inputs,
       [id]: value,
@@ -29,9 +25,8 @@ function SignIn() {
   };
 
   // check wheather the signin information is available when the button clicked
-  const onClickLogin = () => {
-    console.log("Click Login button");
-    console.log("Email : " + email + " // Password : " + password);
+  const onClickLogin = (e) => {
+    e.preventDefault();
 
     fetch("/signin/check", {
       method: "POST",
@@ -68,13 +63,13 @@ function SignIn() {
   };
 
   return (
-    <div className="Background">
+    <div className="background">
       <Header />
 
-      <div className="Description-body">Log in to chat your smart partner.</div>
-      <div className="Description-title">Welcome</div>
+      <div className="description-body">Log in to chat with your smart partner.</div>
+      <div className="description-title">Welcome</div>
 
-      <form className="Signin-body">
+      <form className="signin-body" onSubmit={onClickLogin}>
         <label className="input-label">Email</label>
         <input id="email" className="inputWrap" type="email" value={email} onChange={onChange} />
 
@@ -82,8 +77,8 @@ function SignIn() {
         <input id="password" className="inputWrap" type="password" value={password} onChange={onChange} />
         <br />
 
-        {signinCheck && <label style={{ color: "red" }}>Please try again</label>}
-        <button className="custom-button" onClick={onClickLogin}>
+        {signinCheck && <label style={{ color: "red" }}>Invalid username or password. Please try again.</label>}
+        <button className="custom-button" type="submit">
           <span> Login </span>
         </button>
       </form>
@@ -92,7 +87,7 @@ function SignIn() {
         <label>Forgot your password?</label>
         <br />
         <label>Don't have an account ?</label>
-        <Link className="Signup-link" to="/signup">
+        <Link className="signup-link" to="/signup">
           Sign Up
         </Link>
       </p>
