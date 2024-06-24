@@ -1,0 +1,121 @@
+.plan-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.description-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.description-body {
+  color: #666;
+  margin: 0 auto;
+}
+
+.plans {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.plan-card {
+  width: 300px;
+  height: 630px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 32px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.plan-card:hover {
+  transform: scale(1.2);
+  background-color: #6699cc;
+  color: white;
+}
+
+.plan-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.plan-title {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: -25px;
+}
+
+.plan-card:hover .plan-description {
+  color: white;
+}
+
+.plan-description {
+  margin-bottom: 32px;
+  font-size: 20px;
+  margin-left: 3px;
+  color: #666;
+}
+
+.plan-ai-icon {
+  align-self: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 40px;
+}
+
+.plan-others-icon {
+  align-self: center;
+  width: 85px;
+  height: 85px;
+  margin-bottom: 35px;
+}
+
+.plan-card:hover .button-get-started {
+  background-color: #6699cc;
+  color: white;
+}
+
+.button-get-started {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 35px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #000;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+hr.line {
+  border-top: 1px solid #ddd;
+  margin-bottom: 40px;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+}
+
+.plan-features-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.plan-features li {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.plan-features-icon {
+  align-self: center;
+  margin-right: 5px;
+}
