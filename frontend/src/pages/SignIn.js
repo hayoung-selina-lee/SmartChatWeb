@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { ContinueToastContext } from "../contexts/ContinueToastContext";
 
 function SignIn() {
+  const { showContinueToast } = React.useContext(ContinueToastContext);
+
+  const navigateToSignUp = () => {
+    window.location.href = "/signup"; // Replace with your desired URL
+  };
+
   // signin status check - using signinCheck set default as false
   const [signinCheck, setSigninCheck] = useState(false);
 
@@ -24,7 +29,7 @@ function SignIn() {
     });
   };
 
-  // check wheather the signin information is available when the button clicked
+  // check whether the signin information is available when the button clicked
   const onClickLogin = (e) => {
     e.preventDefault();
 
@@ -62,10 +67,12 @@ function SignIn() {
       });
   };
 
+  const handleContinueWithoutAccount = () => {
+    showContinueToast(true); // Ensure showContinueToast function works as expected
+  };
+
   return (
     <div className="background">
-      <Header />
-
       <div className="description-body">Log in to chat with your smart partner.</div>
       <div className="description-title">Welcome</div>
 
@@ -84,14 +91,21 @@ function SignIn() {
       </form>
 
       <p>
-        <label>Forgot your password?</label>
+        <label className="signin-helper">Forgot your password?</label>
         <br />
-        <label>Don't have an account ?</label>
-        <Link className="signup-link" to="/signup">
+        <label className="signin-helper">Don't have an account ?</label>
+        <label className="link-text" onClick={navigateToSignUp}>
+          {" "}
           Sign Up
-        </Link>
+        </label>
+        <br />
+        <label className="signin-helper">Would you like to use this service without creating an account?</label>
+        <label className="link-text" onClick={handleContinueWithoutAccount}>
+          Continue without account.
+        </label>
       </p>
     </div>
   );
 }
+
 export default SignIn;

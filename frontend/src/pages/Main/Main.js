@@ -1,18 +1,23 @@
 import React from "react";
 import "../../App.css";
 import "./Main.css";
-import Header from "../../components/Header";
 
 import aiIcon from "../../resources/AI_Icon.svg";
 import otherUserIcon from "../../resources/OtherUser_Icon.svg";
 
 import { PiChatCenteredDotsFill } from "react-icons/pi";
 
-const Main = () => {
-  return (
-    <div className="background">
-      <Header />
+import { SignInToastContext } from "../../contexts/SignInToastContext";
 
+const Main = () => {
+  const { showSignInToast } = React.useContext(SignInToastContext);
+
+  const handleClick = () => {
+    showSignInToast();
+  };
+
+  return (
+    <div className="background" style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <section className="plan-section">
         <h2 className="description-title">Chat type for Your Need</h2>
         <p className="description-body">
@@ -28,7 +33,9 @@ const Main = () => {
               <img src={aiIcon} className="plan-ai-icon" alt="AI Icon" />
             </div>
 
-            <button className="button-get-started">Get Started</button>
+            <button className="button-get-started" onClick={handleClick}>
+              Get Started
+            </button>
 
             <hr className="line" />
 
@@ -68,7 +75,9 @@ const Main = () => {
               <img src={otherUserIcon} className="plan-others-icon" alt="User Icon" />
             </div>
 
-            <button className="button-get-started">Get Started</button>
+            <button className="button-get-started" onClick={handleClick}>
+              Get Started
+            </button>
 
             <hr className="line" />
 

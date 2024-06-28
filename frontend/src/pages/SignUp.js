@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import ToastPopUp from "../components/ToastPopUp";
@@ -217,7 +216,7 @@ function SignUp() {
   // check wheather the signup inputs are filled and then send to backend
   const navigate = useNavigate();
 
-  const onClickSignUp = (e) => {
+  const onClickSignUp = async (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
     console.log("Click Sign up button");
@@ -240,30 +239,29 @@ function SignUp() {
     } else {
       setpasswordSame(false);
     }
-
     // send to backend all informations
-    fetch("/signup/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputs),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setShowToast(true); // show toast message
-          console.log("create!!!");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    try {
+      const response = await fetch("/signup/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
       });
+
+      if (response.ok) {
+        setShowToast(true);
+        console.log("Account created successfully!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsButtonDisabled(false);
+    }
   };
 
   return (
     <div className="background">
-      <Header />
-
       <div className="description-title">Get Started with Smart Chat</div>
 
       <form className="signup-body">
