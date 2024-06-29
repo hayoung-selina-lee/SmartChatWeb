@@ -326,8 +326,10 @@ function SignUp() {
         <button disabled={isButtonDisabled} className="custom-button" onClick={onClickSignUp}>
           <span> Sign Up </span>
         </button>
-        <br style={{ marginBottom: "50vh" }} />
+
+        <br />
       </form>
+
       {showToast && (
         <ToastPopUp
           setToast={setShowToast}

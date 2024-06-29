@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #007bff;
+  --primary-color: #6699cc;
   --secondary-color: #6c757d;
   --success-color: #28a745;
   --danger-color: #dc3545;
@@ -9,6 +9,8 @@
   --dark-color: #003366;
   --black-color: #333;
   --background-color: #f8fafd;
+  --title-font-color: #003366;
+  --normal-font-color: #485063;
 }
 
 .App {
@@ -21,6 +23,7 @@ body {
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .background {
@@ -31,7 +34,9 @@ body {
   justify-content: center; /* Center items vertically */
   background-color: var(--background-color);
   flex: 1;
+  padding: 20px;
 }
+
 .header-layout {
   text-align: center;
   display: flex;
@@ -39,17 +44,19 @@ body {
   align-items: center;
   justify-content: center; /* Center items vertically */
   background-color: var(--background-color);
-  padding-bottom: 80px;
+  margin-bottom: min(6vh, 60px);
+  margin-top: min(4vh, 30px);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #fff;
+  padding: 5px;
+  background-color: white;
   border-radius: 24px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--light-color);
+  width: min(70vw, 800px);
 }
 
 .header-left {
@@ -63,17 +70,17 @@ body {
   display: flex;
   align-items: center;
   margin-right: 20px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
 }
 
 .header-title {
   margin-left: 10px;
-  color: #000;
+  color: black;
 }
 
 .header-icon {
-  height: 40px;
+  height: 30px;
   pointer-events: none;
 }
 
@@ -98,12 +105,12 @@ body {
 
 .sign-in {
   background-color: transparent;
-  color: #333;
+  color: black;
 }
 
 .sign-up {
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -122,26 +129,46 @@ body {
 }
 
 .description-title {
-  font-size: 32px;
+  font-size: 25px;
   font-weight: bold;
+}
+
+.description-body {
+  color: var(--normal-font-color);
+  margin: 0 auto;
+  font-size: 15px;
 }
 
 .signin-body {
-  width: 550px;
+  width: min(30vw, 350px);
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: min(2vh, 20px);
 }
 
 .input-label {
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   text-align: left;
-  margin-top: 30px;
+  margin-top: min(3vh, 20px);
+}
+
+.inputWrap {
+  display: flex;
+  height: min(1.3vh, 18px);
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 3px;
+  border: 1px solid var(--light-color);
+  font-size: 15px;
+}
+
+.inputWrap:focus-within {
+  border: 1px solid var(--info-color);
 }
 
 .warning-label {
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   text-align: left;
   color: var(--danger-color);
@@ -149,50 +176,37 @@ body {
 
 .warning-inputWrap {
   display: flex;
-  height: 15px;
+  height: min(1.3vh, 18px);
   border-radius: 8px;
-  padding: 30px;
+  padding: 18px;
   margin-top: 3px;
   border: 1px solid var(--danger-color);
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .warning-inputWrap:focus-within {
-  border: 1px solid #a2d5f2;
+  border: 1px solid var(--info-color);
 }
 
 .signin-helper {
-  font-size: 25px;
+  color: var(--normal-font-color);
+  font-size: 15px;
 }
 
 .link-text {
   margin-left: 7px;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bold;
   color: black;
   text-decoration: none;
 }
 
 .signup-body {
-  width: 500px;
+  width: min(30vw, 350px);
   height: 1vh;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-}
-
-.inputWrap {
-  display: flex;
-  height: 20px;
-  border-radius: 8px;
-  padding: 25px;
-  margin-top: 3px;
-  border: 1px solid var(--light-color);
-  font-size: 25px;
-}
-
-.inputWrap:focus-within {
-  border: 1px solid #a2d5f2;
 }
 
 .input-button-wrapper {
@@ -207,12 +221,12 @@ body {
 
 /* custom-button */
 .custom-button {
-  padding: 5px 10px;
-  margin: 30px 0px 10px 0px;
-  background-color: var(--light-color);
-  border: 1px solid var(--light-color);
+  padding: 1px 6px;
+  margin: max(3vh, 20px) 0px 10px 0px;
+  background-color: var(--title-font-color);
+  border: 1px solid var(--title-font-color);
   border-radius: 8px;
-  font-size: 30px;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -222,8 +236,8 @@ body {
 
 .custom-button[disabled] span {
   transition: all 0.5s;
-  transform: translate(0, 10px);
-  box-shadow: 0 0 0 0 #fff;
+  transform: translate(0, 5px);
+  box-shadow: 0 0 0 0 white;
 }
 
 .custom-button span {
@@ -231,21 +245,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 10px;
-  padding: 20px;
-  background-color: var(--light-color);
+  bottom: 6px;
+  padding: 10px;
+  background-color: var(--title-font-color);
   border-radius: 8px;
 
-  border: 1px solid #fff;
-  box-shadow: 0 10px 10px 1.9px #fff;
-  color: black;
+  border: 1px solid white;
+  box-shadow: 0 3px 3px 0px white;
+  color: white;
   font-weight: bold;
 }
 
 .custom-button span:hover {
   transition: all 0.5s;
-  transform: translate(0, 10px);
-  box-shadow: 0 0 0 0 #fff;
+  transform: translate(0, 5px);
+  box-shadow: 0 0 0 0 white;
 }
 
 .custom-button span:not(:hover):not(:active) {
@@ -257,12 +271,13 @@ body {
   margin-top: 3px;
   position: relative;
   display: flex;
+  background-color: white;
   flex-wrap: wrap;
   border: 1px solid var(--light-color);
   border-radius: 8px;
   box-sizing: border-box;
-  padding: 5px;
-  font-size: 14px;
+  padding: 7px;
+  font-size: 15px;
   height: 500px;
 }
 
@@ -276,13 +291,13 @@ body {
 }
 
 .radio-inputs .radio .name {
-  font-size: 25px;
+  font-size: 15px;
   display: flex;
   cursor: pointer;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  padding: 15px;
+  padding: 7px;
   transition: all 0.15s ease-in-out;
 }
 
@@ -322,9 +337,9 @@ body {
   background-color: var(--background-color);
   color: black;
   padding: 20px;
-  width: 1200px;
-  height: 800px;
-  border-radius: 10px;
+  width: min(65%, 800px);
+  height: min(80%, 550px);
+  border-radius: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: none;
   z-index: 1001;
@@ -363,9 +378,9 @@ body {
   background-color: var(--background-color);
   color: black;
   padding: 20px;
-  width: 1200px;
-  height: 800px;
-  border-radius: 10px;
+  width: min(65%, 800px);
+  height: min(80%, 550px);
+  border-radius: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1001;
   display: flex;
@@ -387,8 +402,8 @@ body {
 
 .close-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0px;
+  right: 10px;
   background: none;
   border: none;
   font-size: 24px;
@@ -397,7 +412,7 @@ body {
 
 .back-button {
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: 20px;
   font-size: 24px;
   cursor: pointer;
@@ -405,7 +420,7 @@ body {
 
 .toast-message {
   font-size: 18px;
-  color: #808080;
+  color: var(--normal-font-color);
   margin-bottom: 50px;
 }
 
@@ -414,19 +429,20 @@ body {
 }
 
 .arrow-button {
-  background-color: black;
+  background-color: var(--title-font-color);
   color: white;
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border: none;
   border-radius: 50%;
-  font-size: 36px;
   cursor: pointer;
 }
 
 .arrow-icon {
   display: inline-block;
   transform: rotate(0deg);
+  font-size: 50px;
+  font-weight: bold;
 }
 
 .blur-background {

@@ -3,27 +3,30 @@
   margin: 0 auto;
 }
 
-.description-title {
-  font-size: 32px;
+.plan-description-title {
+  font-size: 25px;
   font-weight: bold;
+  margin-top: max(-15px, -2vh);
 }
 
-.description-body {
-  color: #666;
+.plan-description-body {
+  color: var(--normal-font-color);
   margin: 0 auto;
+  font-size: 15px;
+  margin-top: max(-15px, -2vh);
 }
 
 .plans {
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: min(5vh, 50px);
   flex-wrap: wrap;
 }
 
 .plan-card {
   width: 300px;
-  height: 630px;
-  padding: 20px;
+  height: 600px;
+  padding: 0px 20px 14px 20px;
   border: 1px solid #ddd;
   border-radius: 32px;
   background-color: #fff;
@@ -35,7 +38,7 @@
 
 .plan-card:hover {
   transform: scale(1.2);
-  background-color: #6699cc;
+  background-color: var(--primary-color);
   color: white;
 }
 
@@ -47,11 +50,12 @@
 
 .plan-title {
   font-weight: bold;
+  color: var(--title-font-color);
   font-size: 32px;
   margin-bottom: -25px;
 }
 
-.plan-card:hover .plan-description {
+.plan-card:hover .plan-title {
   color: white;
 }
 
@@ -59,7 +63,11 @@
   margin-bottom: 32px;
   font-size: 20px;
   margin-left: 3px;
-  color: #666;
+  color: var(--normal-font-color);
+}
+
+.plan-card:hover .plan-description {
+  color: white;
 }
 
 .plan-ai-icon {
@@ -67,6 +75,11 @@
   width: 80px;
   height: 80px;
   margin-bottom: 40px;
+  color: black;
+}
+
+.plan-card:hover .plan-ai-icon {
+  color: white;
 }
 
 .plan-others-icon {
@@ -74,10 +87,10 @@
   width: 85px;
   height: 85px;
   margin-bottom: 35px;
+  color: black;
 }
 
-.plan-card:hover .button-get-started {
-  background-color: #6699cc;
+.plan-card:hover .plan-others-icon {
   color: white;
 }
 
@@ -86,17 +99,23 @@
   padding: 10px 0;
   margin-bottom: 35px;
   border-radius: 12px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #000;
+  border: 1px solid var(--title-font-color);
+  background-color: white;
+  color: var(--title-font-color);
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
+.plan-card:hover .button-get-started {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid white;
+}
+
 hr.line {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--normal-font-color);
   margin-bottom: 40px;
 }
 
@@ -106,13 +125,23 @@ hr.line {
 }
 
 .plan-features-title {
+  color: var(--title-font-color);
   font-size: 18px;
   font-weight: bold;
 }
 
+.plan-card:hover .plan-features-title {
+  color: white;
+}
+
 .plan-features li {
+  color: var(--normal-font-color);
   margin-bottom: 15px;
   display: flex;
+}
+
+.plan-card:hover .plan-features li {
+  color: white;
 }
 
 .plan-features-icon {

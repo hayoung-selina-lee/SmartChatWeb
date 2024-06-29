@@ -2,8 +2,8 @@ import React from "react";
 import "../../App.css";
 import "./Main.css";
 
-import aiIcon from "../../resources/AI_Icon.svg";
-import otherUserIcon from "../../resources/OtherUser_Icon.svg";
+import AIIcon from "../../resources/AI_Icon";
+import OtherUser_Icon from "../../resources/OtherUser_Icon";
 
 import { PiChatCenteredDotsFill } from "react-icons/pi";
 
@@ -17,10 +17,10 @@ const Main = () => {
   };
 
   return (
-    <div className="background" style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <div className="background">
       <section className="plan-section">
-        <h2 className="description-title">Chat type for Your Need</h2>
-        <p className="description-body">
+        <h2 className="plan-description-title">Chat type for Your Need</h2>
+        <p className="plan-description-body">
           Discover the best way to interact with our platform. Choose to chat with our advanced AI for instant, accurate responses, or connect with other users
           to share experiences and perspectives.
         </p>
@@ -30,7 +30,7 @@ const Main = () => {
             <div className="plan-header">
               <h3 className="plan-title">With Smart AI</h3>
               <p className="plan-description">You can chat with AI.</p>
-              <img src={aiIcon} className="plan-ai-icon" alt="AI Icon" />
+              <AIIcon className="plan-ai-icon" />
             </div>
 
             <button className="button-get-started" onClick={handleClick}>
@@ -72,7 +72,7 @@ const Main = () => {
             <div className="plan-header">
               <h3 className="plan-title">With Other Users</h3>
               <p className="plan-description">You can chat with other users.</p>
-              <img src={otherUserIcon} className="plan-others-icon" alt="User Icon" />
+              <OtherUser_Icon className="plan-others-icon" />
             </div>
 
             <button className="button-get-started" onClick={handleClick}>
