@@ -9,6 +9,7 @@ import SignInToast from "./components/SignInToast";
 import { ContinueToastProvider, ContinueToastContext } from "./contexts/ContinueToastContext";
 import ContinueToast from "./components/ContinueToast";
 import Header from "./components/Header"; // Ensure this is correctly imported if using Header component
+import Chat from "./pages/Chat/Chat";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="chat" element={<Chat />} />
           </Routes>
           <ToastConsumer />
           <ContinueToastConsumer />

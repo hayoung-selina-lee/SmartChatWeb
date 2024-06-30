@@ -9,6 +9,7 @@
   --dark-color: #003366;
   --black-color: #333;
   --background-color: #f8fafd;
+
   --title-font-color: #003366;
   --normal-font-color: #485063;
 }
@@ -77,6 +78,7 @@ body {
 .header-title {
   margin-left: 10px;
   color: black;
+  cursor: pointer;
 }
 
 .header-icon {

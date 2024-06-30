@@ -15,7 +15,9 @@ const Header = () => {
       <div className="header-left">
         <div className="header-title-logo">
           <img src={logo} className="header-icon" alt="Smart Chat App logo" onClick={toMainPage} />
-          <h1 className="header-title">Smart Chat App</h1>
+          <h1 className="header-title" onClick={toMainPage}>
+            Smart Chat App
+          </h1>
         </div>
         <nav className="nav">
           <a href="#features">Features</a>
